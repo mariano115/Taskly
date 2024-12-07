@@ -1,0 +1,176 @@
+Taskly
+
+1. Persistencia de Datos Locales
+Herramientas:
+AsyncStorage: Para guardar las tareas localmente en el dispositivo.
+SQLite: Si quieres usar una base de datos relacional local.
+Realm: Una alternativa moderna y rápida para bases de datos locales.
+Aprendizaje:
+Manejo de ciclos de carga (lectura y escritura de datos).
+Sincronización de datos locales y remotos.
+2. Sincronización en la Nube
+Herramientas:
+Firebase Firestore o Supabase: Para almacenar datos en la nube y sincronizarlos en tiempo real.
+Usa el SDK de Firebase para autenticación con Google o email.
+Aprendizaje:
+Configuración y uso de una base de datos en tiempo real.
+Sincronización automática entre dispositivos.
+3. Gestión de Estado Compleja
+Herramientas:
+Redux Toolkit: Para manejar el estado global de las tareas.
+React Query: Para manejar la sincronización y el cache de datos.
+Aprendizaje:
+Usar hooks avanzados como useSelector y useDispatch.
+Diseñar estructuras de estado escalables.
+4. Animaciones
+Herramientas:
+React Native Reanimated: Para animaciones fluidas en el movimiento o eliminación de tareas.
+React Native Gesture Handler: Para implementar gestos, como deslizar para completar/eliminar.
+Aprendizaje:
+Crear animaciones personalizadas y de alta calidad.
+Implementar interacciones más atractivas y responsivas.
+5. Notificaciones Push
+Herramientas:
+Expo Notifications o OneSignal: Para enviar recordatorios de tareas pendientes.
+Aprendizaje:
+Configuración de notificaciones locales y remotas.
+Uso de permisos y manejo de notificaciones en segundo plano.
+6. Componentes UI Personalizados
+Herramientas:
+Usa bibliotecas como React Native Paper o React Native Elements.
+Implementa modales y diálogos con diseño limpio para agregar o editar tareas.
+Aprendizaje:
+Diseño accesible y responsive.
+Reutilización y composición de componentes.
+7. Testeo y Buenas Prácticas
+Herramientas:
+Jest y React Native Testing Library: Para probar la lógica y la UI.
+Eslint y Prettier: Para mantener un código limpio y legible.
+Aprendizaje:
+Escribir tests unitarios y de integración.
+Configurar CI/CD para probar y lanzar tu app automáticamente.
+8. Funcionalidad Offline-First
+Herramientas:
+WatermelonDB o Redux Offline: Para manejar datos en modo offline y sincronizarlos cuando vuelva la conexión.
+Aprendizaje:
+Diseño de aplicaciones resilientes.
+Estrategias de sincronización de datos.
+9. Temas Oscuro y Claro
+Herramientas:
+React Native Appearance o useColorScheme() para detectar el tema del sistema.
+Aprendizaje:
+Implementación de temas dinámicos en la aplicación.
+
+
+
+----------------------
+
+Pantallas Principales
+1. Pantalla de Inicio / Lista de Tareas
+Funcionalidad:
+
+Muestra la lista completa de tareas.
+Opciones para agregar, editar, eliminar o marcar tareas como completadas.
+Elementos:
+-Una FlatList para mostrar las tareas.
+-Botón flotante (TouchableOpacity o Button) para agregar una nueva tarea.
+-Gestos de deslizar para editar o eliminar tareas.
+2. Pantalla de Detalles de Tarea (Modal o Pantalla Separada)
+Funcionalidad:
+
+Permite al usuario ver y editar los detalles de una tarea.
+Incluye campos como:
+Título.
+Descripción.
+Fecha límite (con un selector de fecha).
+Estado (pendiente o completada).
+Elementos:
+Formulario (TextInput, selector de fecha, etc.).
+Botón para guardar cambios.
+3. Pantalla de Sincronización y Configuración
+Funcionalidad:
+
+Permite al usuario iniciar sesión para sincronizar datos en la nube.
+Configuración de notificaciones o temas.
+Elementos:
+Botón para iniciar sesión (usando Google/Firebase).
+Opciones de sincronización manual/automática.
+Selector de tema (oscuro/claro).
+Pantallas Opcionales (Extras)
+4. Pantalla de Estadísticas (Opcional)
+Funcionalidad:
+
+Muestra un resumen de tareas completadas, pendientes, y próximas.
+Elementos:
+Gráficos simples (react-native-chart-kit o VictoryCharts).
+Indicadores como porcentaje de tareas completadas.
+5. Pantalla de Categorías (Opcional)
+Funcionalidad:
+
+Permite organizar las tareas en categorías (e.g., Trabajo, Personal, Estudio).
+Al seleccionar una categoría, filtra las tareas de la lista principal.
+Elementos:
+Menú de categorías (FlatList o botones).
+Funcionalidad de filtro aplicada a la lista.
+
+
+-------------------------------
+
+
+Flujo de Usuario Ejemplo
+Inicio:
+
+Abre la app y ve una lista de tareas pendientes.
+Agregar Nueva Tarea:
+
+Pulsa el botón flotante para abrir el formulario de nueva tarea.
+Completa los detalles y guarda.
+Editar/Eliminar Tarea:
+
+Desliza una tarea a la izquierda para editarla.
+Desliza a la derecha para eliminarla.
+Sincronizar Datos:
+
+Inicia sesión para sincronizar tus datos entre dispositivos.
+Explorar Configuración:
+
+Cambia al tema oscuro y habilita notificaciones push para recordatorios.
+
+
+------------------------
+
+
+/TaskSync                    # Carpeta raíz del proyecto
+│
+├── /assets                  # Recursos estáticos (imágenes, iconos, etc.)
+│   └── logo.png
+│
+├── /components              # Componentes reutilizables y pequeños
+│   ├── TaskItem.js          # Componente que representa una tarea en la lista
+│   ├── TaskForm.js          # Formulario para agregar/editar tarea
+│   └── Header.js            # Componente para la cabecera de las pantallas
+│
+├── /navigation              # Archivos de configuración de navegación
+│   ├── AppNavigator.js      # Navegación principal (tab y stack navigator)
+│   └── TabNavigator.js      # Navegación de tabs
+│
+├── /screens                 # Pantallas principales de la app
+│   ├── TaskListScreen.js    # Pantalla con la lista de tareas
+│   ├── TaskDetailScreen.js  # Pantalla de detalles de tarea
+│   └── SettingsScreen.js    # Pantalla de configuración
+│
+├── /services                # Lógica de negocio y comunicación con APIs/BD
+│   ├── taskService.js       # Servicio para manejar las tareas (CRUD)
+│   └── syncService.js       # Lógica de sincronización con la nube (Firebase)
+│
+├── /store                   # Manejo del estado global (Redux o Context)
+│   ├── actions.js           # Acciones de Redux
+│   └── reducer.js           # Reducer de Redux
+│
+├── /utils                   # Funciones utilitarias
+│   ├── validation.js        # Validación de datos
+│   └── formatDate.js        # Función para formatear fechas
+│
+├── App.js                   # Punto de entrada de la app (configuración inicial)
+├── package.json             # Dependencias y scripts del proyecto
+└── .gitignore               # Archivos a ignorar por git
